@@ -4,10 +4,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "export": "next export",
-    "deploy": "next build && touch out/.nojekyll"
+    "deploy": "next build && next export && touch out/.nojekyll"
   },
   "keywords": [],
   "author": "",
