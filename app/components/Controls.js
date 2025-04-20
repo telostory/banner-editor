@@ -23,6 +23,7 @@ export default function Controls({
 
   return (
     <div className="controls">
+      {/* 1. 배너 사이즈 */}
       <div className="control-section">
         <h2>배너 사이즈</h2>
         <div className="size-selection">
@@ -50,6 +51,7 @@ export default function Controls({
         </div>
       </div>
 
+      {/* 2. 템플릿 */}
       <div className="control-section">
         <h2>템플릿</h2>
         <div className="template-grid">
@@ -74,35 +76,27 @@ export default function Controls({
         </div>
       </div>
 
+      {/* 3. 이미지 */}
       <div className="control-section">
-        <h2>배경 색상</h2>
-        <div className="color-grid">
-          {colors.map((color) => (
-            <div
-              key={color}
-              className={`color-item ${color === bannerConfig.backgroundColor ? 'selected' : ''}`}
-              style={{ backgroundColor: color }}
-              onClick={() => onColorChange(color)}
-            />
-          ))}
+        <h2>이미지</h2>
+        <div className="image-upload">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={onImageUpload}
+            id="image-upload"
+            style={{ display: 'none' }}
+          />
+          <label htmlFor="image-upload" className="upload-button">
+            이미지 업로드
+          </label>
+          {bannerConfig.image && (
+            <span className="image-status">이미지가 업로드됨</span>
+          )}
         </div>
       </div>
 
-      <div className="control-section">
-        <h2>폰트</h2>
-        <div className="font-selection">
-          {fonts.map((font) => (
-            <div
-              key={font.id}
-              className={`font-item ${font.id === bannerConfig.font.id ? 'selected' : ''}`}
-              onClick={() => onFontChange(font)}
-            >
-              <div className={`font-preview ${font.className}`}>{font.name}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
+      {/* 4. 이미지 위치 조정(이미지 업로드 되면 노출) */}
       {showImagePositionSlider && (
         <div className="control-section">
           <h2>이미지 위치 조정</h2>
@@ -123,6 +117,38 @@ export default function Controls({
         </div>
       )}
 
+      {/* 5. 배경 색상 */}
+      <div className="control-section">
+        <h2>배경 색상</h2>
+        <div className="color-grid">
+          {colors.map((color) => (
+            <div
+              key={color}
+              className={`color-item ${color === bannerConfig.backgroundColor ? 'selected' : ''}`}
+              style={{ backgroundColor: color }}
+              onClick={() => onColorChange(color)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* 6. 폰트 */}
+      <div className="control-section">
+        <h2>폰트</h2>
+        <div className="font-selection">
+          {fonts.map((font) => (
+            <div
+              key={font.id}
+              className={`font-item ${font.id === bannerConfig.font.id ? 'selected' : ''}`}
+              onClick={() => onFontChange(font)}
+            >
+              <div className={`font-preview ${font.className}`}>{font.name}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 7. 텍스트 */}
       <div className="control-section">
         <h2>텍스트</h2>
         <div className="text-inputs">
@@ -147,25 +173,7 @@ export default function Controls({
         </div>
       </div>
 
-      <div className="control-section">
-        <h2>이미지</h2>
-        <div className="image-upload">
-          <input
-            type="file"
-            accept="image/*"
-            onChange={onImageUpload}
-            id="image-upload"
-            style={{ display: 'none' }}
-          />
-          <label htmlFor="image-upload" className="upload-button">
-            이미지 업로드
-          </label>
-          {bannerConfig.image && (
-            <span className="image-status">이미지가 업로드됨</span>
-          )}
-        </div>
-      </div>
-
+      {/* 다운로드 및 소재 등록 버튼 */}
       <div className="control-section">
         <div className="button-group">
           <button onClick={onDownload} className="download-button">
