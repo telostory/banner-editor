@@ -73,6 +73,7 @@ export default function BannerEditor() {
     template: TEMPLATES[0],
     image: null,
     font: FONTS[0],
+    imagePositionX: 50, // 이미지 좌우 위치 조정용 슬라이더 값 (0-100, 기본값 50)
   });
 
   const bannerRef = useRef(null);
@@ -143,6 +144,13 @@ export default function BannerEditor() {
     });
   };
 
+  const handleImagePositionChange = (position) => {
+    setBannerConfig({
+      ...bannerConfig,
+      imagePositionX: position,
+    });
+  };
+
   const handleDownload = async () => {
     if (bannerRef.current) {
       try {
@@ -169,6 +177,7 @@ export default function BannerEditor() {
         onColorChange={handleColorChange}
         onTextChange={handleTextChange}
         onFontChange={handleFontChange}
+        onImagePositionChange={handleImagePositionChange}
         onDownload={handleDownload}
       />
       <BannerPreview

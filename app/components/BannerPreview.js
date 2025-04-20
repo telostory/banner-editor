@@ -3,7 +3,7 @@
 import { forwardRef, useEffect } from 'react';
 
 const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
-  const { title, subtitle, backgroundColor, template, image, font } = bannerConfig;
+  const { title, subtitle, backgroundColor, template, image, font, imagePositionX } = bannerConfig;
 
   // 디버깅을 위한 로그 추가
   useEffect(() => {
@@ -25,6 +25,11 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
   // 둥근 모서리 이미지 템플릿 (1, 2번 케이스)
   const renderRoundedTemplate = () => {
     const isLeft = template.imagePosition === 'left';
+    
+    // 이미지 위치 조정 계산 (0-100 값을 실제 위치값으로 변환)
+    const objectPosition = image && imagePositionX !== undefined 
+      ? `${imagePositionX}% center` 
+      : 'center';
     
     return (
       <>
@@ -48,7 +53,12 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
               <img
                 src={image}
                 alt="배너 이미지"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover',
+                  objectPosition
+                }}
                 onError={(e) => {
                   console.error("이미지 로드 오류:", e);
                   e.target.style.display = 'none';
