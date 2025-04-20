@@ -1,0 +1,27 @@
+---
+description: "코드 네이밍 규칙"
+globs: ["**/*.ts", "**/*.tsx"]
+---
+
+# 코드 네이밍 규칙
+
+## 🧩 함수명
+
+- 동사 + 명사 조합 (예: `getUserInfo`, `updateCache`)
+- Boolean 반환은 `is/has/can`으로 시작 (예: `isLoggedIn`, `hasAccess`)
+
+## 🧩 변수명
+
+- 줄임말 사용 금지 (`num`은 허용, `cnt`, `usr` 등은 지양)
+- 배열은 복수형 (예: `users`, `logs`)
+- DOM 요소는 접미사로 Element (예: `inputElement`, `formElement`)
+
+## 🧩 클래스/인터페이스
+
+- PascalCase 사용 (예: `UserRepository`, `AuthService`)
+- Interface는 `I` 접두어 없이 (예: `User`, `TokenPayload`)
+
+## 🧩 파일명
+
+- kebab-case 사용 (예: `auth-handler.ts`, `use-user.ts`)
+- React Hook은 `use-` 접두어 필수 (예: `use-auth.ts`)

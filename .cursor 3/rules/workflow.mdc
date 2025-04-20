@@ -1,0 +1,7 @@
+# Workflow Rules
+
+- main 브랜치는 항상 배포 가능한 상태로 유지할 것.
+- 모든 변경 사항은 PR을 통해 반영하며, 최소 1인의 리뷰를 받는다.
+- PR 제목은 `[type]: description` 형식으로 작성한다. (예: `feat: 인증 토큰 리프레시 기능 추가`)
+- 커밋 메시지는 conventional commits 스타일을 따른다.
+- 긴 작업은 feature 브랜치로 나누고, 작업 완료 시 squash merge를 사용한다.

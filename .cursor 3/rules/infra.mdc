@@ -1,0 +1,6 @@
+# Infra Rules
+
+- 모든 비밀 값은 `.env` 또는 `env.ts`에서 관리하며, 코드 내에 직접 노출하지 않는다.
+- KV 저장소 사용 시 prefix를 통일하여 namespace 충돌을 방지한다.
+- Supabase, 외부 API 연동 시 client 인스턴스는 singleton 패턴으로 구성할 것.
+- 배포 파이프라인은 `deploy.yaml`에 명시된 정책만 따르며, 임의 배포는 제한한다.

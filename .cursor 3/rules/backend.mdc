@@ -1,0 +1,7 @@
+# Backend Rules
+
+- Deno KV, Supabase, 혹은 기타 외부 서비스는 adapter 레이어에만 위치해야 한다.
+- 모든 handler는 `use-case`를 호출하는 최소한의 역할만 수행한다.
+- 비즈니스 로직은 domain 또는 service 레이어에서만 작성한다.
+- `Request`/`Response` 타입은 명확히 지정하고, any 사용은 절대 금지.
+- 테스트는 `*_test.ts`로 구분하며, 각 use-case 단위로 작성할 것.

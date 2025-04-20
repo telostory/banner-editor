@@ -1,0 +1,7 @@
+# Frontend Rules
+
+- UI 컴포넌트는 반드시 재사용 가능하고 상태를 분리하여 설계할 것.
+- Zustand를 사용할 경우, global state와 local state를 명확히 구분할 것.
+- API 호출은 `api/` 디렉토리에서만 처리하며, React 컴포넌트에서 직접 호출하지 않는다.
+- Tailwind는 반드시 클래스 명 기준으로 정렬할 것. (예: flex → justify → items → padding → color)
+- 프론트엔드 라우팅은 파일 기반 라우팅을 원칙으로 하되, 예외는 `routes.ts`에 정의한다.
