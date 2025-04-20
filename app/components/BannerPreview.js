@@ -84,8 +84,8 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
             color: 'white',
           }}
         >
-          <h1 style={{ fontSize: '3.0rem', marginBottom: '8px' }}>{title}</h1>
-          <h2 style={{ fontSize: '3.0rem' }}>{subtitle}</h2>
+          <h1 style={{ fontSize: '3.0rem', marginBottom: '8px', fontWeight: 'normal' }}>{title}</h1>
+          <h2 style={{ fontSize: '3.0rem', fontWeight: 'normal' }}>{subtitle}</h2>
         </div>
       </>
     );
@@ -112,8 +112,8 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
             zIndex: 2,
           }}
         >
-          <h1 style={{ fontSize: '3.0rem', marginBottom: '8px' }}>{title}</h1>
-          <h2 style={{ fontSize: '3.0rem' }}>{subtitle}</h2>
+          <h1 style={{ fontSize: '3.0rem', marginBottom: '8px', fontWeight: 'normal' }}>{title}</h1>
+          <h2 style={{ fontSize: '3.0rem', fontWeight: 'normal' }}>{subtitle}</h2>
         </div>
         
         {/* 이미지 영역 - 원형 마스킹 (방향 수정: 둥근 부분이 텍스트 쪽을 향하도록) */}

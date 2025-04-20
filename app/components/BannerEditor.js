@@ -49,6 +49,11 @@ const TEMPLATES = [
 
 const FONTS = [
   {
+    id: 'hanna-pro',
+    name: '배민 한나체 Pro',
+    className: 'font-hanna-pro',
+  },
+  {
     id: 'jua',
     name: '배민 주아체',
     className: 'font-jua',
@@ -57,11 +62,6 @@ const FONTS = [
     id: 'hanna-air',
     name: '배민 한나체 Air',
     className: 'font-hanna-air',
-  },
-  {
-    id: 'hanna-pro',
-    name: '배민 한나체 Pro',
-    className: 'font-hanna-pro',
   },
 ];
 
