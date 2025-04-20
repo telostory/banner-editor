@@ -94,7 +94,7 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
   // 반원형 템플릿 (3, 4번 케이스)
   const renderSemicircleTemplate = () => {
     const isLeft = template.imagePosition === 'left';
-    const circleSize = 320; // 원 크기 - 배너의 절반 정도만 차지하도록 축소
+    const circleSize = 280; // 원 크기 - 배너 가로 280px만 차지하도록 조정
     
     return (
       <>
