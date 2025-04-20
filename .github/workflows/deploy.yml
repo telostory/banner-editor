@@ -23,11 +23,12 @@ jobs:
       - run: npm install
       - run: npm run build
       
-      # 추가: index.html이 out 폴더의 루트에 있는지 확인
+      # 빌드 결과물 확인
       - name: Check build output
         run: |
           ls -la out/
-          [ -f out/index.html ] || echo "Warning: index.html not found in out directory"
+          echo "Build output directory content:"
+          find out -type f | sort
       
       # 중요: 빌드 후 .nojekyll 파일 생성
       - name: Add .nojekyll file
@@ -41,7 +42,7 @@ jobs:
             rm out/README.md
           fi
           # 404.html 파일이 있는지 확인
-          if [ ! -f out/404.html ]; then
+          if [ ! -f out/404.html ] && [ -f out/index.html ]; then
             cp out/index.html out/404.html
           fi
         
