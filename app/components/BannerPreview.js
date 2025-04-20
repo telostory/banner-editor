@@ -94,7 +94,7 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
   // 반원형 템플릿 (3, 4번 케이스)
   const renderSemicircleTemplate = () => {
     const isLeft = template.imagePosition === 'left';
-    const circleSize = 400; // 원 크기
+    const circleSize = 320; // 원 크기 - 배너의 절반 정도만 차지하도록 축소
     
     return (
       <>
@@ -116,7 +116,7 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
           <h2 style={{ fontSize: '3.0rem' }}>{subtitle}</h2>
         </div>
         
-        {/* 이미지 영역 - 원형 마스킹 */}
+        {/* 이미지 영역 - 원형 마스킹 (방향 수정: 둥근 부분이 텍스트 쪽을 향하도록) */}
         <div 
           style={{
             position: 'absolute',
@@ -125,7 +125,7 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
             transform: 'translateY(-50%)',
             width: circleSize,
             height: circleSize,
-            borderRadius: isLeft ? '50% 0 0 50%' : '0 50% 50% 0',
+            borderRadius: isLeft ? '0 50% 50% 0' : '50% 0 0 50%', // 마스킹 방향 반대로 변경
             overflow: 'hidden',
             zIndex: 1,
           }}
