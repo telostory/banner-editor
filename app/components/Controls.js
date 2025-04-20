@@ -5,12 +5,14 @@ export default function Controls({
   templates,
   colors,
   fonts,
+  bannerSizes,
   onImageUpload,
   onTemplateChange,
   onColorChange,
   onTextChange,
   onFontChange,
   onImagePositionChange,
+  onBannerSizeChange,
   onDownload,
   onRegisterMaterial
 }) {
@@ -21,6 +23,33 @@ export default function Controls({
 
   return (
     <div className="controls">
+      <div className="control-section">
+        <h2>배너 사이즈</h2>
+        <div className="size-selection">
+          {bannerSizes.map((size) => (
+            <div
+              key={size.id}
+              className={`size-item ${size.id === bannerConfig.bannerSize.id ? 'selected' : ''}`}
+              onClick={() => onBannerSizeChange(size)}
+            >
+              <div className="size-preview">
+                <div style={{ 
+                  width: '80px',
+                  height: `${size.id === 'compact' ? '18px' : '26px'}`,
+                  border: '1px solid #ddd',
+                  backgroundColor: '#f5f5f5',
+                  borderRadius: '4px',
+                  margin: '0 auto'
+                }}></div>
+              </div>
+              <div className="size-label">
+                {size.name}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="control-section">
         <h2>템플릿</h2>
         <div className="template-grid">

@@ -3,7 +3,25 @@
 import { forwardRef, useEffect } from 'react';
 
 const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
-  const { title, subtitle, backgroundColor, template, image, font, imagePositionX } = bannerConfig;
+  const { title, subtitle, backgroundColor, template, image, font, imagePositionX, bannerSize } = bannerConfig;
+  
+  // 배너 사이즈에 따른 스타일 조정
+  const isCompactSize = bannerSize.id === 'compact';
+  const subtitleFontSize = isCompactSize ? '1.5rem' : '3.0rem';
+  
+  // 이미지 컨테이너 조정
+  const getImageContainerHeight = () => {
+    if (template.imageStyle === 'rounded') {
+      return isCompactSize ? '110px' : '160px';
+    } else {
+      return isCompactSize ? bannerSize.height : '240px';
+    }
+  };
+  
+  // 반원형 템플릿 크기 조정
+  const getSemicircleSize = () => {
+    return isCompactSize ? 200 : 280;
+  };
 
   // 디버깅을 위한 로그 추가
   useEffect(() => {
@@ -40,7 +58,7 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
             top: '50%',
             transform: 'translateY(-50%)',
             width: '210px',
-            height: '160px',
+            height: getImageContainerHeight(),
           }}
         >
           {image ? (
@@ -95,7 +113,7 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
           }}
         >
           <h1 style={{ fontSize: '3.0rem', marginBottom: '8px', fontWeight: 'normal' }}>{title}</h1>
-          <h2 style={{ fontSize: '3.0rem', fontWeight: 'normal' }}>{subtitle}</h2>
+          <h2 style={{ fontSize: subtitleFontSize, fontWeight: 'normal' }}>{subtitle}</h2>
         </div>
       </>
     );
@@ -104,7 +122,7 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
   // 반원형 템플릿 (3, 4번 케이스)
   const renderSemicircleTemplate = () => {
     const isLeft = template.imagePosition === 'left';
-    const circleSize = 280; // 원 크기 - 배너 가로 280px만 차지하도록 조정
+    const circleSize = getSemicircleSize();
     
     // 이미지 위치 조정 계산 (0-100 값을 실제 위치값으로 변환)
     const objectPosition = image && imagePositionX !== undefined 
@@ -128,7 +146,7 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
           }}
         >
           <h1 style={{ fontSize: '3.0rem', marginBottom: '8px', fontWeight: 'normal' }}>{title}</h1>
-          <h2 style={{ fontSize: '3.0rem', fontWeight: 'normal' }}>{subtitle}</h2>
+          <h2 style={{ fontSize: subtitleFontSize, fontWeight: 'normal' }}>{subtitle}</h2>
         </div>
         
         {/* 이미지 영역 - 원형 마스킹 (방향 수정: 둥근 부분이 텍스트 쪽을 향하도록) */}
@@ -200,8 +218,8 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
         style={{
           backgroundColor,
           position: 'relative',
-          width: '720px',
-          height: '240px',
+          width: bannerSize.width,
+          height: bannerSize.height,
           overflow: 'hidden',
         }}
       >

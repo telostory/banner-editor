@@ -16,6 +16,21 @@ const PRESET_COLORS = [
   '#1e293b', // 다크 블루
 ];
 
+const BANNER_SIZES = [
+  {
+    id: 'standard',
+    name: '720 x 240',
+    width: 720,
+    height: 240,
+  },
+  {
+    id: 'compact',
+    name: '720 x 160',
+    width: 720,
+    height: 160,
+  },
+];
+
 const TEMPLATES = [
   {
     id: 'left-image-rounded',
@@ -74,6 +89,7 @@ export default function BannerEditor() {
     image: null,
     font: FONTS[0],
     imagePositionX: 50, // 이미지 좌우 위치 조정용 슬라이더 값 (0-100, 기본값 50)
+    bannerSize: BANNER_SIZES[0], // 기본 배너 사이즈 720x240
   });
 
   const bannerRef = useRef(null);
@@ -151,6 +167,13 @@ export default function BannerEditor() {
     });
   };
 
+  const handleBannerSizeChange = (size) => {
+    setBannerConfig({
+      ...bannerConfig,
+      bannerSize: size,
+    });
+  };
+
   const handleDownload = async () => {
     if (bannerRef.current) {
       try {
@@ -177,12 +200,14 @@ export default function BannerEditor() {
         templates={TEMPLATES}
         colors={PRESET_COLORS}
         fonts={FONTS}
+        bannerSizes={BANNER_SIZES}
         onImageUpload={handleImageUpload}
         onTemplateChange={handleTemplateChange}
         onColorChange={handleColorChange}
         onTextChange={handleTextChange}
         onFontChange={handleFontChange}
         onImagePositionChange={handleImagePositionChange}
+        onBannerSizeChange={handleBannerSizeChange}
         onDownload={handleDownload}
         onRegisterMaterial={handleRegisterMaterial}
       />
