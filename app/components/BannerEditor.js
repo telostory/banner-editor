@@ -67,8 +67,8 @@ const FONTS = [
 
 export default function BannerEditor() {
   const [bannerConfig, setBannerConfig] = useState({
-    title: '타이틀을 입력하세요',
-    subtitle: '서브 타이틀을 입력하세요',
+    title: '타이틀 입력',
+    subtitle: '서브타이틀 입력',
     backgroundColor: PRESET_COLORS[0],
     template: TEMPLATES[0],
     image: null,
