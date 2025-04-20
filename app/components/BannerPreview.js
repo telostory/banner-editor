@@ -134,20 +134,26 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
     // 텍스트가 반원형 이미지로부터 40px 떨어지도록 설정
     const textAreaWidth = bannerSize.width - circleSize - 80; // 40px (여백) * 2
     
+    // 디버깅을 위한 로그 추가
+    console.log('배너 너비:', bannerSize.width, 'px');
+    console.log('원 크기:', circleSize, 'px');
+    console.log('계산된 텍스트 영역 너비:', textAreaWidth, 'px');
+    
     return (
       <>
-        {/* 텍스트 영역 */}
+        {/* 텍스트 영역 - 배경색 추가하여 실제 영역 확인 */}
         <div 
           className={font.className}
           style={{
             position: 'absolute',
             [isLeft ? 'right' : 'left']: '40px',
-            width: textAreaWidth,
+            width: `${textAreaWidth}px`, // px 단위 명시적 추가
             top: '50%',
             transform: 'translateY(-50%)',
             color: 'white',
             textAlign: isLeft ? 'right' : 'left',
             zIndex: 2,
+            backgroundColor: 'rgba(0, 0, 255, 0.2)', // 디버깅용 배경색 (투명도 낮게)
           }}
         >
           <h1 style={{ fontSize: '3.0rem', marginBottom: '8px', fontWeight: 'normal' }}>{title}</h1>
