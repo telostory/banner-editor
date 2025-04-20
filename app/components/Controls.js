@@ -138,15 +138,14 @@ export default function Controls({
       </div>
 
       <div className="control-section">
-        <button onClick={onDownload} className="download-button">
-          다운로드
-        </button>
-      </div>
-
-      <div className="control-section">
-        <button onClick={onRegisterMaterial} className="register-button">
-          소재에 등록
-        </button>
+        <div className="button-group">
+          <button onClick={onDownload} className="download-button">
+            다운로드
+          </button>
+          <button onClick={onRegisterMaterial} className="register-button">
+            소재에 등록
+          </button>
+        </div>
       </div>
     </div>
   );
