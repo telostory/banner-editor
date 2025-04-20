@@ -14,10 +14,9 @@ export default function Controls({
   onDownload,
 }) {
   const { template, image } = bannerConfig;
-  const isRoundedTemplate = template.imageStyle === 'rounded';
-
-  // 이미지가 있고 둥근 이미지 템플릿인 경우에만 슬라이더 표시
-  const showImagePositionSlider = image && isRoundedTemplate;
+  
+  // 이미지가 있는 경우에만 슬라이더 표시 (모든 템플릿 타입에 적용)
+  const showImagePositionSlider = image !== null;
 
   return (
     <div className="controls">

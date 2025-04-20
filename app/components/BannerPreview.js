@@ -106,6 +106,11 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
     const isLeft = template.imagePosition === 'left';
     const circleSize = 280; // 원 크기 - 배너 가로 280px만 차지하도록 조정
     
+    // 이미지 위치 조정 계산 (0-100 값을 실제 위치값으로 변환)
+    const objectPosition = image && imagePositionX !== undefined 
+      ? `${imagePositionX}% center` 
+      : isLeft ? 'left center' : 'right center';
+    
     return (
       <>
         {/* 텍스트 영역 */}
@@ -154,7 +159,7 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
-                  objectPosition: isLeft ? 'left center' : 'right center',
+                  objectPosition,
                 }}
                 onError={(e) => {
                   console.error("이미지 로드 오류:", e);
