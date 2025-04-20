@@ -5,6 +5,9 @@ import { forwardRef } from 'react';
 const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
   const { title, subtitle, backgroundColor, template, image, font } = bannerConfig;
 
+  // 로그 추가 - 이미지 데이터 확인
+  console.log("Preview received image:", image ? "이미지 있음" : "이미지 없음");
+
   // 이미지 스타일에 따른 렌더링 결정
   const renderBanner = () => {
     if (template.imageStyle === 'semicircle') {
@@ -41,6 +44,10 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
                 src={image}
                 alt="배너 이미지"
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                onError={(e) => {
+                  console.error("이미지 로드 오류:", e);
+                  e.target.style.display = 'none';
+                }}
               />
             </div>
           ) : (
@@ -53,10 +60,11 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
                 justifyContent: 'center', 
                 alignItems: 'center',
                 borderRadius: '12px',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                border: '1px dashed #cccccc'
               }}
             >
-              <span style={{ color: '#bbbbbb' }}>이미지를 선택해주세요</span>
+              <span style={{ color: '#bbbbbb', fontSize: '0.9rem', textAlign: 'center' }}>이미지를 선택해주세요</span>
             </div>
           )}
         </div>
@@ -117,6 +125,10 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
                   marginRight: isLeft ? 'auto' : '0',
                   borderRadius: '12px'
                 }}
+                onError={(e) => {
+                  console.error("이미지 로드 오류:", e);
+                  e.target.style.display = 'none';
+                }}
               />
             </div>
           ) : (
@@ -137,9 +149,10 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
                 alignItems: 'center',
                 marginLeft: isLeft ? '0' : 'auto',
                 marginRight: isLeft ? 'auto' : '0',
-                borderRadius: '12px'
+                borderRadius: '12px',
+                border: '1px dashed #cccccc'
               }}>
-                <span style={{ color: '#bbbbbb' }}>이미지를 선택해주세요</span>
+                <span style={{ color: '#bbbbbb', fontSize: '0.9rem', textAlign: 'center' }}>이미지를 선택해주세요</span>
               </div>
             </div>
           )}

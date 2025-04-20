@@ -28,7 +28,15 @@ export default function Controls({
         <label htmlFor="banner-image" className="file-label">
           이미지 선택
         </label>
-        {bannerConfig.image && <span> 선택됨</span>}
+        {bannerConfig.image ? (
+          <span style={{ marginLeft: '8px', color: '#4CAF50' }}> 
+            ✓ 이미지 선택됨
+          </span>
+        ) : (
+          <span style={{ marginLeft: '8px', color: '#999999', fontSize: '0.9rem' }}>
+            이미지를 선택해주세요
+          </span>
+        )}
       </div>
       
       <div className="control-group">

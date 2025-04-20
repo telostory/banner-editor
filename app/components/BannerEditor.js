@@ -79,15 +79,39 @@ export default function BannerEditor() {
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
+    console.log("File selected:", file);
+    
     if (file) {
+      // 파일 유형 확인
+      if (!file.type.startsWith('image/')) {
+        console.error("Selected file is not an image:", file.type);
+        alert("이미지 파일만 업로드 가능합니다.");
+        return;
+      }
+      
       const reader = new FileReader();
+      
       reader.onload = (event) => {
-        setBannerConfig({
-          ...bannerConfig,
-          image: event.target.result,
-        });
+        console.log("File loaded successfully");
+        const imageData = event.target.result;
+        
+        setBannerConfig((prevConfig) => ({
+          ...prevConfig,
+          image: imageData,
+        }));
       };
-      reader.readAsDataURL(file);
+      
+      reader.onerror = (error) => {
+        console.error("Error loading image:", error);
+        alert("이미지를 불러오는 중 오류가 발생했습니다.");
+      };
+      
+      try {
+        reader.readAsDataURL(file);
+      } catch (error) {
+        console.error("Error reading file:", error);
+        alert("파일을 읽는 중 오류가 발생했습니다.");
+      }
     }
   };
 
