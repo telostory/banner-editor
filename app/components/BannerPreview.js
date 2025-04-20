@@ -94,85 +94,11 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
   // 반원형 템플릿 (3, 4번 케이스)
   const renderSemicircleTemplate = () => {
     const isLeft = template.imagePosition === 'left';
-    const semicircleSize = 480; // 반원 크기
+    const circleSize = 400; // 원 크기
     
     return (
       <>
-        <div 
-          style={{
-            position: 'absolute',
-            [isLeft ? 'left' : 'right']: -semicircleSize / 2,
-            top: 0,
-            width: semicircleSize,
-            height: '240px',
-            overflow: 'hidden',
-            borderRadius: isLeft ? '0 240px 240px 0' : '240px 0 0 240px',
-            backgroundColor: 'rgba(255, 255, 255, 0.15)',
-            zIndex: 1,
-          }}
-        >
-          {image ? (
-            <div 
-              style={{ 
-                position: 'relative',
-                width: '100%', 
-                height: '100%',
-                display: 'flex',
-                justifyContent: isLeft ? 'flex-start' : 'flex-end',
-                alignItems: 'center'
-              }}
-            >
-              <div 
-                style={{ 
-                  width: '240px', 
-                  height: '180px', 
-                  marginLeft: isLeft ? '20px' : 'auto',
-                  marginRight: isLeft ? 'auto' : '20px',
-                  overflow: 'hidden',
-                  borderRadius: '12px'
-                }}
-              >
-                <img
-                  src={image}
-                  alt="배너 이미지"
-                  style={{ 
-                    width: '100%', 
-                    height: '100%', 
-                    objectFit: 'cover',
-                  }}
-                  onError={(e) => {
-                    console.error("이미지 로드 오류:", e);
-                    alert("이미지를 불러오는 중 오류가 발생했습니다.");
-                  }}
-                />
-              </div>
-            </div>
-          ) : (
-            <div style={{ 
-              position: 'relative',
-              width: '100%', 
-              height: '100%',
-              display: 'flex',
-              justifyContent: isLeft ? 'flex-start' : 'flex-end',
-              alignItems: 'center'
-            }}>
-              <div style={{
-                width: '240px', 
-                height: '180px',
-                backgroundColor: '#ffffff',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginLeft: isLeft ? '20px' : 'auto',
-                marginRight: isLeft ? 'auto' : '20px',
-                borderRadius: '12px',
-                border: '1px dashed #cccccc'
-              }}>
-                <span style={{ color: '#bbbbbb', fontSize: '0.9rem', textAlign: 'center' }}>이미지를 선택해주세요</span>
-              </div>
-            </div>
-          )}
-        </div>
+        {/* 텍스트 영역 */}
         <div 
           className={font.className}
           style={{
@@ -188,6 +114,62 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
         >
           <h1 style={{ fontSize: '3.0rem', marginBottom: '8px' }}>{title}</h1>
           <h2 style={{ fontSize: '3.0rem' }}>{subtitle}</h2>
+        </div>
+        
+        {/* 이미지 영역 - 원형 마스킹 */}
+        <div 
+          style={{
+            position: 'absolute',
+            [isLeft ? 'left' : 'right']: 0,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: circleSize,
+            height: circleSize,
+            borderRadius: isLeft ? '50% 0 0 50%' : '0 50% 50% 0',
+            overflow: 'hidden',
+            zIndex: 1,
+          }}
+        >
+          {image ? (
+            <div style={{ 
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+              overflow: 'hidden',
+            }}>
+              <img
+                src={image}
+                alt="배너 이미지"
+                style={{ 
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: isLeft ? 'left center' : 'right center',
+                }}
+                onError={(e) => {
+                  console.error("이미지 로드 오류:", e);
+                  alert("이미지를 불러오는 중 오류가 발생했습니다.");
+                }}
+              />
+            </div>
+          ) : (
+            <div style={{
+              width: '100%',
+              height: '100%',
+              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+              <span style={{ 
+                color: '#ffffff', 
+                fontSize: '0.9rem', 
+                textAlign: 'center',
+                paddingLeft: isLeft ? '50px' : '0',
+                paddingRight: isLeft ? '0' : '50px',
+              }}>이미지를 선택해주세요</span>
+            </div>
+          )}
         </div>
       </>
     );
