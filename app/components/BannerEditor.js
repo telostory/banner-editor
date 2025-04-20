@@ -165,6 +165,11 @@ export default function BannerEditor() {
     }
   };
 
+  const handleRegisterMaterial = () => {
+    // 실제 API 연결 전 목업 기능
+    alert('소재 이미지로 등록되었습니다');
+  };
+
   return (
     <div className="editor-container">
       <Controls
@@ -179,6 +184,7 @@ export default function BannerEditor() {
         onFontChange={handleFontChange}
         onImagePositionChange={handleImagePositionChange}
         onDownload={handleDownload}
+        onRegisterMaterial={handleRegisterMaterial}
       />
       <BannerPreview
         ref={bannerRef}

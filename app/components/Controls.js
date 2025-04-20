@@ -12,6 +12,7 @@ export default function Controls({
   onFontChange,
   onImagePositionChange,
   onDownload,
+  onRegisterMaterial
 }) {
   const { template, image } = bannerConfig;
   
@@ -37,7 +38,7 @@ export default function Controls({
                 )}
               </div>
               <span style={{ marginLeft: '8px', color: '#999999', fontSize: '0.9rem' }}>
-                {tmpl.imagePosition === 'left' ? '왼쪽' : '오른쪽'} {tmpl.imageStyle === 'rounded' ? '모서리' : '반원형'}
+                {tmpl.imagePosition === 'left' ? '왼쪽' : '오른쪽'} {tmpl.imageStyle === 'rounded' ? '사각형' : '반원형'}
               </span>
             </div>
           ))}
@@ -139,6 +140,12 @@ export default function Controls({
       <div className="control-section">
         <button onClick={onDownload} className="download-button">
           다운로드
+        </button>
+      </div>
+
+      <div className="control-section">
+        <button onClick={onRegisterMaterial} className="register-button">
+          소재에 등록
         </button>
       </div>
     </div>
