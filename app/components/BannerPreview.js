@@ -65,8 +65,8 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
                 color: 'white',
               }}
             >
-              <h1>{title}</h1>
-              <h2>{subtitle}</h2>
+              <h1 style={{ fontSize: '2.8rem', marginBottom: '8px' }}>{title}</h1>
+              <h2 style={{ fontSize: '2rem' }}>{subtitle}</h2>
             </div>
           </>
         ) : (
@@ -116,8 +116,8 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
                 color: 'white',
               }}
             >
-              <h1>{title}</h1>
-              <h2>{subtitle}</h2>
+              <h1 style={{ fontSize: '2.8rem', marginBottom: '8px' }}>{title}</h1>
+              <h2 style={{ fontSize: '2rem' }}>{subtitle}</h2>
             </div>
           </>
         )}
