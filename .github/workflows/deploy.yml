@@ -32,6 +32,14 @@ jobs:
       # 중요: 빌드 후 .nojekyll 파일 생성
       - name: Add .nojekyll file
         run: touch out/.nojekyll
+      
+      # GitHub Pages가 제대로 인덱스 파일을 인식하도록 설정
+      - name: Prepare for GitHub Pages
+        run: |
+          # gh-pages 브랜치에 README.md가 없도록 함
+          [ -f out/README.md ] && rm out/README.md
+          # 404.html 파일이 있는지 확인
+          [ -f out/404.html ] || cp out/index.html out/404.html
         
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
