@@ -1,12 +1,17 @@
 'use client';
 
-import { forwardRef } from 'react';
+import { forwardRef, useEffect } from 'react';
 
 const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
   const { title, subtitle, backgroundColor, template, image, font } = bannerConfig;
 
-  // 로그 추가 - 이미지 데이터 확인
-  console.log("Preview received image:", image ? "이미지 있음" : "이미지 없음");
+  // 디버깅을 위한 로그 추가
+  useEffect(() => {
+    if (image) {
+      console.log("이미지 데이터 존재:", image.substring(0, 50) + "...");
+      console.log("현재 템플릿:", template.id);
+    }
+  }, [image, template.id]);
 
   // 이미지 스타일에 따른 렌더링 결정
   const renderBanner = () => {
@@ -103,33 +108,44 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
             overflow: 'hidden',
             borderRadius: isLeft ? '0 240px 240px 0' : '240px 0 0 240px',
             backgroundColor: 'rgba(255, 255, 255, 0.15)',
+            zIndex: 1,
           }}
         >
           {image ? (
-            <div style={{ 
-              position: 'relative',
-              width: '100%', 
-              height: '100%',
-              display: 'flex',
-              justifyContent: isLeft ? 'flex-start' : 'flex-end',
-              alignItems: 'center'
-            }}>
-              <img
-                src={image}
-                alt="배너 이미지"
+            <div 
+              style={{ 
+                position: 'relative',
+                width: '100%', 
+                height: '100%',
+                display: 'flex',
+                justifyContent: isLeft ? 'flex-start' : 'flex-end',
+                alignItems: 'center'
+              }}
+            >
+              <div 
                 style={{ 
                   width: '240px', 
                   height: '180px', 
-                  objectFit: 'cover',
-                  marginLeft: isLeft ? '0' : 'auto',
-                  marginRight: isLeft ? 'auto' : '0',
+                  marginLeft: isLeft ? '20px' : 'auto',
+                  marginRight: isLeft ? 'auto' : '20px',
+                  overflow: 'hidden',
                   borderRadius: '12px'
                 }}
-                onError={(e) => {
-                  console.error("이미지 로드 오류:", e);
-                  e.target.style.display = 'none';
-                }}
-              />
+              >
+                <img
+                  src={image}
+                  alt="배너 이미지"
+                  style={{ 
+                    width: '100%', 
+                    height: '100%', 
+                    objectFit: 'cover',
+                  }}
+                  onError={(e) => {
+                    console.error("이미지 로드 오류:", e);
+                    alert("이미지를 불러오는 중 오류가 발생했습니다.");
+                  }}
+                />
+              </div>
             </div>
           ) : (
             <div style={{ 
@@ -147,8 +163,8 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginLeft: isLeft ? '0' : 'auto',
-                marginRight: isLeft ? 'auto' : '0',
+                marginLeft: isLeft ? '20px' : 'auto',
+                marginRight: isLeft ? 'auto' : '20px',
                 borderRadius: '12px',
                 border: '1px dashed #cccccc'
               }}>
@@ -166,7 +182,8 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
             top: '50%',
             transform: 'translateY(-50%)',
             color: 'white',
-            textAlign: isLeft ? 'right' : 'left'
+            textAlign: isLeft ? 'right' : 'left',
+            zIndex: 2,
           }}
         >
           <h1 style={{ fontSize: '3.0rem', marginBottom: '8px' }}>{title}</h1>
