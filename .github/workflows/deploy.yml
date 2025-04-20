@@ -4,11 +4,18 @@ on:
   push:
     branches: [main]
 
+# GitHub Pages에 대한 권한 설정
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false # credential 관련 문제 해결
+
       - uses: actions/setup-node@v3
         with:
           node-version: 18
@@ -25,3 +32,4 @@ jobs:
         with:
           folder: out
           branch: gh-pages 
+          token: ${{ secrets.GITHUB_TOKEN }} # 토큰 명시적 설정 
