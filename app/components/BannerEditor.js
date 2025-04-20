@@ -18,32 +18,32 @@ const PRESET_COLORS = [
 
 const TEMPLATES = [
   {
-    id: 'left-image',
+    id: 'left-image-rounded',
     name: '왼쪽 이미지',
     imagePosition: 'left',
     textPosition: 'right',
-    imageStyle: 'normal',
+    imageStyle: 'rounded',
   },
   {
-    id: 'right-image',
+    id: 'right-image-rounded',
     name: '오른쪽 이미지',
     imagePosition: 'right',
     textPosition: 'left',
-    imageStyle: 'normal',
+    imageStyle: 'rounded',
   },
   {
-    id: 'rounded-left',
+    id: 'semicircle-left',
     name: '둥근 왼쪽 이미지',
     imagePosition: 'left',
     textPosition: 'right',
-    imageStyle: 'rounded',
+    imageStyle: 'semicircle',
   },
   {
-    id: 'rounded-right',
+    id: 'semicircle-right',
     name: '둥근 오른쪽 이미지',
     imagePosition: 'right',
     textPosition: 'left',
-    imageStyle: 'rounded',
+    imageStyle: 'semicircle',
   },
 ];
 
