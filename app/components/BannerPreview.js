@@ -171,13 +171,15 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
             <div style={{
               width: '100%',
               height: '100%',
-              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              backgroundColor: '#ffffff',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
+              border: '1px dashed #cccccc',
+              borderRadius: isLeft ? '0 50% 50% 0' : '50% 0 0 50%',
             }}>
               <span style={{ 
-                color: '#ffffff', 
+                color: '#bbbbbb', 
                 fontSize: '0.9rem', 
                 textAlign: 'center',
                 paddingLeft: isLeft ? '50px' : '0',
