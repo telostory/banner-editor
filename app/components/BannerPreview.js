@@ -129,6 +129,11 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
       ? `${imagePositionX}% center` 
       : isLeft ? 'left center' : 'right center';
     
+    // 텍스트 공간 확장을 위한 계산
+    // 반원형 이미지 너비를 고려하여 텍스트 영역 계산
+    // 텍스트가 반원형 이미지로부터 40px 떨어지도록 설정
+    const textAreaWidth = bannerSize.width - circleSize - 80; // 40px (여백) * 2
+    
     return (
       <>
         {/* 텍스트 영역 */}
@@ -137,7 +142,7 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
           style={{
             position: 'absolute',
             [isLeft ? 'right' : 'left']: '40px',
-            width: '300px',
+            width: textAreaWidth,
             top: '50%',
             transform: 'translateY(-50%)',
             color: 'white',
