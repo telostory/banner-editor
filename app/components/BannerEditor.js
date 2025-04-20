@@ -67,9 +67,9 @@ const FONTS = [
 
 export default function BannerEditor() {
   const [bannerConfig, setBannerConfig] = useState({
-    title: 'BHC',
-    subtitle: '최대 20,000원 할인',
-    backgroundColor: '#fb923c',
+    title: '타이틀을 입력하세요',
+    subtitle: '서브 타이틀을 입력하세요',
+    backgroundColor: PRESET_COLORS[0],
     template: TEMPLATES[0],
     image: null,
     font: FONTS[0],
