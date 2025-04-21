@@ -215,22 +215,19 @@ const BannerPreview = forwardRef(({ bannerConfig }, ref) => {
     );
   };
 
-  // 다운로드용 배너 스타일
-  const downloadBannerStyle = {
-    backgroundColor,
-    position: 'relative',
-    width: bannerSize.width,
-    height: bannerSize.height,
-    overflow: 'hidden',
-    borderRadius: '0', // 라운드 제거
-  };
-
   return (
     <div className="preview">
       <div
         ref={ref}
         className="banner"
-        style={downloadBannerStyle} // 다운로드 시 스타일 적용
+        style={{
+          backgroundColor,
+          position: 'relative',
+          width: bannerSize.width,
+          height: bannerSize.height,
+          overflow: 'hidden',
+          borderRadius: '12px', // 미리보기에서는 라운드 적용
+        }}
       >
         {renderBanner()}
       </div>
