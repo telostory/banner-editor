@@ -1,5 +1,7 @@
 'use client';
 
+import { toPng } from 'html-to-image';
+
 export default function Controls({
   bannerConfig,
   templates,
@@ -20,6 +22,26 @@ export default function Controls({
   
   // 이미지가 있는 경우에만 슬라이더 표시 (모든 템플릿 타입에 적용)
   const showImagePositionSlider = image !== null;
+
+  const handleDownload = () => {
+    const bannerElement = document.querySelector('.banner');
+    if (bannerElement) {
+      // 다운로드 시 모서리를 라운드하지 않도록 스타일 변경
+      bannerElement.style.borderRadius = '0';
+      toPng(bannerElement)
+        .then((dataUrl) => {
+          const link = document.createElement('a');
+          link.download = 'banner.png';
+          link.href = dataUrl;
+          link.click();
+          // 다운로드 후 원래 스타일로 복원
+          bannerElement.style.borderRadius = '12px';
+        })
+        .catch((error) => {
+          console.error('다운로드 오류:', error);
+        });
+    }
+  };
 
   return (
     <div className="controls">
@@ -176,7 +198,7 @@ export default function Controls({
       {/* 다운로드 및 소재 등록 버튼 */}
       <div className="control-section">
         <div className="button-group">
-          <button onClick={onDownload} className="download-button">
+          <button onClick={handleDownload} className="download-button">
             다운로드
           </button>
           <button onClick={onRegisterMaterial} className="register-button">
